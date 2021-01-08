@@ -1,13 +1,14 @@
 package com.lillycover.hair.view.fragment
 
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.lillycover.hair.base.view.BaseFragment
 import com.lillycover.hair.databinding.FragmentDiagnoseBinding
+import com.lillycover.hair.view.activity.CamcorderActivity
 import com.lillycover.hair.viewmodel.fragment.DiagnoseViewModel
 import com.lillycover.hair.widget.etc.isAllPermisionGranted
 import com.lillycover.hair.widget.etc.isLillyCoverSSID
+import com.lillycover.hair.widget.extension.startActivity
 import com.lillycover.hair.widget.extension.startWifiSetting
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,7 +29,7 @@ class DiagnoseFragment : BaseFragment<FragmentDiagnoseBinding, DiagnoseViewModel
         super.onResume()
 
         if (isAllPermisionGranted(requireContext(), requireActivity()) && isLillyCoverSSID(requireContext())) {
-            Log.e("SSID", "LILLYCOVER SSID 동일함")
+            startActivity(CamcorderActivity::class.java)
         }
     }
 }
