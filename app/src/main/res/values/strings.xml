@@ -4,4 +4,8 @@
     <string name="menu_home">홈</string>
     <string name="menu_diagnose">두피 진단</string>
     <string name="menu_detail">더보기</string>
+
+    <string name="text_diagnose">두피 진단하기</string>
+    <string name="text_explain_connect">아래의 버튼을 눌러 뮬리와 WIFI 연결을 해주세요</string>
+    <string name="text_wifi_setting">WIFI 설정하기</string>
 </resources>
