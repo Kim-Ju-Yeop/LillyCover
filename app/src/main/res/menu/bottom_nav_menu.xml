@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="@string/menu_home"
+        android:icon="@drawable/ic_home" />
+
+    <item
+        android:id="@+id/diagnoseFragment"
+        android:title="@string/menu_diagnose"
+        android:icon="@drawable/ic_diagnose" />
+
+    <item
+        android:id="@+id/detailFragment"
+        android:title="@string/menu_detail"
+        android:icon="@drawable/ic_detail"/>
+
+</menu>
