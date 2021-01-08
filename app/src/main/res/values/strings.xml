@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LillyCover</string>
+
+    <string name="menu_home">홈</string>
+    <string name="menu_diagnose">두피 진단</string>
+    <string name="menu_detail">더보기</string>
 </resources>
