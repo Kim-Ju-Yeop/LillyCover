@@ -1,5 +1,6 @@
 package com.lillycover.hair.view.activity
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.navigation.findNavController
@@ -24,4 +25,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun observerViewModel() {}
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (grantResults.isNotEmpty()) for (grantResult in grantResults) if (grantResult == PackageManager.PERMISSION_DENIED) onBackPressed()
+    }
 }
