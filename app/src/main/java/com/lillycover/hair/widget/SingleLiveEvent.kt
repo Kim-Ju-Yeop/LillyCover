@@ -1,26 +1,16 @@
 package com.lillycover.hair.widget
 
-import android.util.Log
 import androidx.annotation.MainThread
-import androidx.annotation.Nullable
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean
 
-class SingleLiveEvent<T> : MutableLiveData<T?>() {
-
-    companion object {
-        private const val TAG = "SingleLiveEvent"
-    }
+open class SingleLiveEvent<T> : MutableLiveData<T>() {
 
     private val mPending = AtomicBoolean(false)
 
-    override fun observe(owner: LifecycleOwner, observer: Observer<in T?>) {
-        if (hasActiveObservers()) {
-            Log.w(TAG, "Multiple observers registered but only one will be notified of changes.")
-        }
-
+    override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
         super.observe(owner, Observer { t ->
             if (mPending.compareAndSet(true, false)) {
                 observer.onChanged(t)
@@ -29,13 +19,20 @@ class SingleLiveEvent<T> : MutableLiveData<T?>() {
     }
 
     @MainThread
-    override fun setValue(@Nullable t: T?) {
-        super.setValue(t)
+    override fun setValue(t: T?) {
         mPending.set(true)
+        super.setValue(t)
     }
-
     @MainThread
     fun call() {
         value = null
+    }
+
+    override fun postValue(t: T?) {
+        mPending.set(true)
+        super.postValue(t)
+    }
+    fun postCall() {
+        postValue(null)
     }
 }
