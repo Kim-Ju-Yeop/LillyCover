@@ -5,20 +5,52 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.view.SurfaceHolder
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.MutableLiveData
 import com.lillycover.hair.base.viewmodel.BaseViewModel
 import com.lillycover.hair.widget.SingleLiveEvent
 import dagger.hilt.android.qualifiers.ActivityContext
+import org.videolan.libvlc.IVLCVout
+import org.videolan.libvlc.LibVLC
+import org.videolan.libvlc.MediaPlayer
 
 class CamcorderViewModel @ViewModelInject constructor(
     @ActivityContext private val context: Context
 ) : BaseViewModel() {
 
-    val onLostEvent = MutableLiveData<Unit>()
+    lateinit var surfaceHolder: SurfaceHolder
+    lateinit var libVLC: LibVLC
+    lateinit var mediaPlayer: MediaPlayer
+    lateinit var iVLCVout: IVLCVout
+
+    val onLostEvent = SingleLiveEvent<Unit>()
+    val onCreateMediaPlayerEvent = SingleLiveEvent<Unit>()
 
     init {
         observerNetwork()
+    }
+
+    fun createMediaPlayer() {
+        if (::libVLC.isInitialized)
+            releaseMediaPlayer()
+
+        val optionList = ArrayList<String>()
+        optionList.add("--aout=opensles")
+        optionList.add("--audio-time-stretch")
+        optionList.add("-vvv")
+
+        libVLC = LibVLC(context, optionList)
+        mediaPlayer = MediaPlayer(libVLC)
+        iVLCVout = mediaPlayer.vlcVout
+
+        onCreateMediaPlayerEvent.call()
+    }
+
+    fun releaseMediaPlayer() {
+        libVLC.release()
+        Thread { mediaPlayer.stop() }.start()
+        iVLCVout = mediaPlayer.vlcVout
+        iVLCVout.detachViews()
     }
 
     private fun observerNetwork() {
@@ -28,7 +60,7 @@ class CamcorderViewModel @ViewModelInject constructor(
         networkRequest.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
         connectivityManager.registerNetworkCallback(networkRequest.build(), object: ConnectivityManager.NetworkCallback() {
             override fun onLost(network: Network) {
-                onLostEvent.postValue(Unit)
+                onLostEvent.postCall()
             }
         })
     }
