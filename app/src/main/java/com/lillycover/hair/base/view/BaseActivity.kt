@@ -8,7 +8,6 @@ import com.lillycover.hair.BR
 import com.lillycover.hair.R
 import com.lillycover.hair.base.viewmodel.BaseViewModel
 import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
 import java.util.*
 
 abstract class BaseActivity<VB: ViewDataBinding, VM: BaseViewModel> : AppCompatActivity() {

@@ -41,7 +41,7 @@ abstract class BaseFragment<VB: ViewDataBinding, VM: BaseViewModel> : Fragment()
     }
 
     private fun getLayoutRes(): Int {
-        val split = ((Objects.requireNonNull<Type>(javaClass.genericSuperclass) as ParameterizedType).actualTypeArguments[0] as Class<*>)
+        val split = ((Objects.requireNonNull(javaClass.genericSuperclass) as ParameterizedType).actualTypeArguments[0] as Class<*>)
             .simpleName.replace("Binding$".toRegex(), "")
             .split("(?<=.)(?=\\p{Upper})".toRegex())
             .dropLastWhile { it.isEmpty() }.toTypedArray()
