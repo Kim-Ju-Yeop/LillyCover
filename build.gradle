@@ -1,6 +1,8 @@
 buildscript {
     ext {
         kotlin_version = "1.4.21"
+        kotlin_stlib_version = "1.4.10"
+        kotlinx_coroutines_android_version = "1.4.1"
 
         lifecycle_version = "2.2.0"
 
@@ -19,6 +21,9 @@ buildscript {
         vlc_version = "2.0.6"
 
         navigation_version = "2.3.2"
+
+        camerakit_version = "1.0.0-beta3.10"
+        jpegkit_version = "0.1.0"
     }
 
     repositories {

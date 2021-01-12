@@ -83,4 +83,10 @@ dependencies {
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+
+    // CameraKit
+    implementation "com.camerakit:camerakit:$camerakit_version"
+    implementation "com.camerakit:jpegkit:$jpegkit_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_stlib_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_android_version"
 }
