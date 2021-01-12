@@ -47,7 +47,7 @@ class CamcorderActivity : BaseActivity<ActivityCamcorderBinding, CamcorderViewMo
                 iVLCVout.setVideoView(textureview)
                 iVLCVout.attachViews()
 
-                val media = Media(libVLC, Uri.parse(AddressUtil.TEST_HOST))
+                val media = Media(libVLC, Uri.parse(AddressUtil.RTSP_HOST))
                 mediaPlayer.media = media
                 mediaPlayer.play()
             })
@@ -59,7 +59,7 @@ class CamcorderActivity : BaseActivity<ActivityCamcorderBinding, CamcorderViewMo
             })
             onCheckEvent.observe(this@CamcorderActivity, Observer {
                 val bitmapDrawable = imageViewList[imageViewIdx].drawable as BitmapDrawable
-                DiagnoseUtil.bitmapList.add(bitmapDrawable.bitmap)
+                DiagnoseUtil.hairBitmapList.add(bitmapDrawable.bitmap)
 
                 imageViewIdx++
                 if (imageViewIdx == imageViewList.size) startActivityWithFinish(CameraActivity::class.java)

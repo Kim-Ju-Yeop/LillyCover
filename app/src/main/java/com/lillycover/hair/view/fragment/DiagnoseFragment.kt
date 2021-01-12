@@ -27,7 +27,7 @@ class DiagnoseFragment : BaseFragment<FragmentDiagnoseBinding, DiagnoseViewModel
 
     override fun onResume() {
         super.onResume()
-        if (isAllPermisionGranted(requireContext(), requireActivity()) && !isLillyCoverSSID(requireContext())) {
+        if (isAllPermisionGranted(requireContext(), requireActivity()) && isLillyCoverSSID(requireContext())) {
             startActivity(CamcorderActivity::class.java)
         }
     }

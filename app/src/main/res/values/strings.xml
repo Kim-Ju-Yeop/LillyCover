@@ -13,4 +13,7 @@
     <string name="text_take">촬영</string>
     <string name="text_retake">재촬영</string>
     <string name="text_check">확인</string>
+
+    <string name="text_diagnose_second" tools:ignore="TypographyFractions">2/3 단계</string>
+
 </resources>

@@ -1,7 +1,9 @@
 package com.lillycover.hair.widget.util
 
 import android.graphics.Bitmap
+import androidx.lifecycle.MutableLiveData
 
 object DiagnoseUtil {
-    val bitmapList = ArrayList<Bitmap>()
+    val hairBitmapList = ArrayList<Bitmap>()
+    val faceBitmap = MutableLiveData<Bitmap>()
 }
