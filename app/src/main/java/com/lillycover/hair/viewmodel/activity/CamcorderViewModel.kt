@@ -5,7 +5,6 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import android.view.SurfaceHolder
 import androidx.hilt.lifecycle.ViewModelInject
 import com.lillycover.hair.base.viewmodel.BaseViewModel
 import com.lillycover.hair.widget.SingleLiveEvent
@@ -18,13 +17,13 @@ class CamcorderViewModel @ViewModelInject constructor(
     @ActivityContext private val context: Context
 ) : BaseViewModel() {
 
-    lateinit var surfaceHolder: SurfaceHolder
     lateinit var libVLC: LibVLC
     lateinit var mediaPlayer: MediaPlayer
     lateinit var iVLCVout: IVLCVout
 
     val onLostEvent = SingleLiveEvent<Unit>()
     val onCreateMediaPlayerEvent = SingleLiveEvent<Unit>()
+    val onTakeEvent = SingleLiveEvent<Unit>()
 
     init {
         observerNetwork()
@@ -51,6 +50,10 @@ class CamcorderViewModel @ViewModelInject constructor(
         Thread { mediaPlayer.stop() }.start()
         iVLCVout = mediaPlayer.vlcVout
         iVLCVout.detachViews()
+    }
+
+    fun takeEvent() {
+        onTakeEvent.call()
     }
 
     private fun observerNetwork() {

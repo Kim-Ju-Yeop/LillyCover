@@ -1,7 +1,7 @@
 package com.lillycover.hair.view.activity
 
+import android.graphics.SurfaceTexture
 import android.net.Uri
-import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.lillycover.hair.base.view.BaseActivity
@@ -18,12 +18,6 @@ class CamcorderActivity : BaseActivity<ActivityCamcorderBinding, CamcorderViewMo
 
     override val mViewModel: CamcorderViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        mViewModel.surfaceHolder = surfaceview.holder
-        mViewModel.surfaceHolder.setKeepScreenOn(true)
-    }
     override fun onResume() {
         super.onResume()
         mViewModel.createMediaPlayer()
@@ -39,12 +33,18 @@ class CamcorderActivity : BaseActivity<ActivityCamcorderBinding, CamcorderViewMo
                 onBackPressed()
             })
             onCreateMediaPlayerEvent.observe(this@CamcorderActivity, Observer {
-                iVLCVout.setVideoView(surfaceview)
+                textureview.keepScreenOn = true
+                textureview.setSurfaceTexture(SurfaceTexture(false))
+
+                iVLCVout.setVideoView(textureview)
                 iVLCVout.attachViews()
 
-                val media = Media(libVLC, Uri.parse(Constants.RTSP_HOST))
+                val media = Media(libVLC, Uri.parse(Constants.TEST_HOST))
                 mediaPlayer.media = media
                 mediaPlayer.play()
+            })
+            onTakeEvent.observe(this@CamcorderActivity, Observer {
+                imageview1.setImageBitmap(textureview.bitmap)
             })
         }
     }
