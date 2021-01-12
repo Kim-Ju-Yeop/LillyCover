@@ -1,14 +1,17 @@
 package com.lillycover.hair.view.activity
 
 import android.graphics.SurfaceTexture
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
+import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.lillycover.hair.base.view.BaseActivity
 import com.lillycover.hair.databinding.ActivityCamcorderBinding
 import com.lillycover.hair.viewmodel.activity.CamcorderViewModel
 import com.lillycover.hair.widget.extension.startActivityWithFinish
-import com.lillycover.hair.widget.util.Constants
+import com.lillycover.hair.widget.util.AddressUtil
+import com.lillycover.hair.widget.util.DiagnoseUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_camcorder.*
 import org.videolan.libvlc.Media
@@ -17,6 +20,11 @@ import org.videolan.libvlc.Media
 class CamcorderActivity : BaseActivity<ActivityCamcorderBinding, CamcorderViewModel>() {
 
     override val mViewModel: CamcorderViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setImageViewData()
+    }
 
     override fun onResume() {
         super.onResume()
@@ -39,17 +47,35 @@ class CamcorderActivity : BaseActivity<ActivityCamcorderBinding, CamcorderViewMo
                 iVLCVout.setVideoView(textureview)
                 iVLCVout.attachViews()
 
-                val media = Media(libVLC, Uri.parse(Constants.TEST_HOST))
+                val media = Media(libVLC, Uri.parse(AddressUtil.TEST_HOST))
                 mediaPlayer.media = media
                 mediaPlayer.play()
             })
             onTakeEvent.observe(this@CamcorderActivity, Observer {
-                imageview1.setImageBitmap(textureview.bitmap)
+                imageViewList[imageViewIdx].setImageBitmap(textureview.bitmap)
+            })
+            onRetakeEvent.observe(this@CamcorderActivity, Observer {
+                imageViewList[imageViewIdx].setImageBitmap(null)
+            })
+            onCheckEvent.observe(this@CamcorderActivity, Observer {
+                val bitmapDrawable = imageViewList[imageViewIdx].drawable as BitmapDrawable
+                DiagnoseUtil.bitmapList.add(bitmapDrawable.bitmap)
+
+                imageViewIdx++
+                if (imageViewIdx == imageViewList.size) startActivityWithFinish(CameraActivity::class.java)
             })
         }
     }
 
     override fun onBackPressed() {
         startActivityWithFinish(MainActivity::class.java)
+    }
+
+    private fun setImageViewData() {
+        mViewModel.imageViewList.add(imageview1)
+        mViewModel.imageViewList.add(imageview2)
+        mViewModel.imageViewList.add(imageview3)
+        mViewModel.imageViewList.add(imageview4)
+        mViewModel.imageViewList.add(imageview5)
     }
 }

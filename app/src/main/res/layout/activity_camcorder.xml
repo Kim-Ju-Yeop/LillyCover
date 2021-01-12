@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
         <variable
             name="viewModel"
             type="com.lillycover.hair.viewmodel.activity.CamcorderViewModel" />
@@ -38,49 +39,55 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/design_default_color_primary">
 
             <ImageView
                 android:id="@+id/imageview1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
+                android:scaleType="centerCrop"
                 tools:src="@drawable/ic_launcher_background"
                 tools:tint="#FF0000"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/imageview2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
+                android:scaleType="centerCrop"
                 tools:src="@drawable/ic_launcher_background"
                 tools:tint="#FFA500"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/imageview3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
+                android:scaleType="centerCrop"
                 tools:src="@drawable/ic_launcher_background"
                 tools:tint="#FFFF00"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/imageview4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
+                android:scaleType="centerCrop"
                 tools:src="@drawable/ic_launcher_background"
                 tools:tint="#008000"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/imageview5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
+                android:scaleType="centerCrop"
                 tools:src="@drawable/ic_launcher_background"
                 tools:tint="#0000FF"
                 tools:ignore="ContentDescription" />
@@ -97,19 +104,22 @@
                 android:layout_height="wrap_content"
                 android:text="@string/text_take"
                 android:layout_gravity="center"
-                android:onClick="@{() -> viewModel.takeEvent()}" />
+                android:onClick="@{() -> viewModel.takeEvent()}"
+                android:visibility="@{viewModel.isTake ? View.INVISIBLE : View.VISIBLE}" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:visibility="@{viewModel.isTake ? View.VISIBLE : View.INVISIBLE}">
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_retake"
                     android:layout_marginEnd="10dp"
+                    android:onClick="@{() -> viewModel.retakeEvent()}"
                     tools:ignore="ButtonStyle" />
 
                 <Button
@@ -117,6 +127,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/text_check"
                     android:layout_marginStart="10dp"
+                    android:onClick="@{() -> viewModel.checkEvent()}"
                     tools:ignore="ButtonStyle" />
             </LinearLayout>
         </LinearLayout>
