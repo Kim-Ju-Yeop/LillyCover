@@ -5,7 +5,9 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.widget.ImageView
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.MutableLiveData
 import com.lillycover.hair.base.viewmodel.BaseViewModel
 import com.lillycover.hair.widget.SingleLiveEvent
 import dagger.hilt.android.qualifiers.ActivityContext
@@ -21,9 +23,15 @@ class CamcorderViewModel @ViewModelInject constructor(
     lateinit var mediaPlayer: MediaPlayer
     lateinit var iVLCVout: IVLCVout
 
+    var imageViewIdx = 0
+    val imageViewList = ArrayList<ImageView>()
+    val isTake = MutableLiveData<Boolean>()
+
     val onLostEvent = SingleLiveEvent<Unit>()
     val onCreateMediaPlayerEvent = SingleLiveEvent<Unit>()
     val onTakeEvent = SingleLiveEvent<Unit>()
+    val onRetakeEvent = SingleLiveEvent<Unit>()
+    val onCheckEvent = SingleLiveEvent<Unit>()
 
     init {
         observerNetwork()
@@ -44,7 +52,6 @@ class CamcorderViewModel @ViewModelInject constructor(
 
         onCreateMediaPlayerEvent.call()
     }
-
     fun releaseMediaPlayer() {
         libVLC.release()
         Thread { mediaPlayer.stop() }.start()
@@ -53,7 +60,16 @@ class CamcorderViewModel @ViewModelInject constructor(
     }
 
     fun takeEvent() {
+        isTake.value = true
         onTakeEvent.call()
+    }
+    fun retakeEvent() {
+        isTake.value = false
+        onRetakeEvent.call()
+    }
+    fun checkEvent() {
+        isTake.value = false
+        onCheckEvent.call()
     }
 
     private fun observerNetwork() {
