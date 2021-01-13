@@ -28,7 +28,6 @@ class CameraActivity : BaseActivity<ActivityCameraBinding, CameraViewModel>() {
 
                     var bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
                     bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, false)
-
                     imageview.setImageBitmap(bitmap)
                 }
             })
@@ -38,8 +37,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding, CameraViewModel>() {
             onCheckEvent.observe(this@CameraActivity, Observer {
                 val bitmapDrawable = imageview.drawable as BitmapDrawable
                 DiagnoseUtil.faceBitmap.value = bitmapDrawable.bitmap
-
-                // 화면 전환
+                startActivityWithFinish(SurveyActivity::class.java)
             })
         }
     }

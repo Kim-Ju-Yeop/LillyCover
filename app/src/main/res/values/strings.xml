@@ -15,5 +15,4 @@
     <string name="text_check">확인</string>
 
     <string name="text_diagnose_second" tools:ignore="TypographyFractions">2/3 단계</string>
-
 </resources>
