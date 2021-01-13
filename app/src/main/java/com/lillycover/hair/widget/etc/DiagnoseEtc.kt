@@ -4,9 +4,12 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.wifi.SupplicantState
 import android.net.wifi.WifiManager
+import android.util.Base64
 import androidx.core.app.ActivityCompat
+import java.io.ByteArrayOutputStream
 
 fun isAllPermisionGranted(context: Context, activity: Activity): Boolean {
     if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
@@ -36,4 +39,12 @@ fun isLillyCoverSSID(context: Context): Boolean {
     } else {
         return false
     }
+}
+
+fun bitmapToBase64(bitmap: Bitmap): String {
+    val stream = ByteArrayOutputStream()
+    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+
+    val byteArray = stream.toByteArray()
+    return Base64.encodeToString(byteArray, Base64.DEFAULT)
 }

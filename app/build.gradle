@@ -40,7 +40,6 @@ android {
 }
 
 dependencies {
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -89,4 +88,7 @@ dependencies {
     implementation "com.camerakit:jpegkit:$jpegkit_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_stlib_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_android_version"
+
+    // Volley
+    implementation "com.android.volley:volley:$volley_version"
 }

@@ -24,6 +24,8 @@ buildscript {
 
         camerakit_version = "1.0.0-beta3.10"
         jpegkit_version = "0.1.0"
+
+        volley_version = "1.1.1"
     }
 
     repositories {
