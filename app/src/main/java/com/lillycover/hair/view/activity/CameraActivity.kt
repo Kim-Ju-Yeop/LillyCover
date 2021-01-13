@@ -32,6 +32,9 @@ class CameraActivity : BaseActivity<ActivityCameraBinding, CameraViewModel>() {
                     imageview.setImageBitmap(bitmap)
                 }
             })
+            onRetakeEvent.observe(this@CameraActivity, Observer {
+                imageview.setImageBitmap(null)
+            })
             onCheckEvent.observe(this@CameraActivity, Observer {
                 val bitmapDrawable = imageview.drawable as BitmapDrawable
                 DiagnoseUtil.faceBitmap.value = bitmapDrawable.bitmap

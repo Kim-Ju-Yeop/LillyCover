@@ -16,6 +16,7 @@ class CameraViewModel @ViewModelInject constructor(
     val buttonText = MutableLiveData<String>()
 
     val onTakeEvent = SingleLiveEvent<Unit>()
+    val onRetakeEvent = SingleLiveEvent<Unit>()
     val onCheckEvent = SingleLiveEvent<Unit>()
 
     init {
@@ -23,9 +24,15 @@ class CameraViewModel @ViewModelInject constructor(
     }
 
     fun takeEvent() {
-        isTake.value = true
-        buttonText.value = context.resources.getString(R.string.text_retake)
-        onTakeEvent.call()
+        if (isTake.value == false) {
+            isTake.value = true
+            buttonText.value = context.resources.getString(R.string.text_retake)
+            onTakeEvent.call()
+        } else {
+            isTake.value = false
+            buttonText.value = context.resources.getString(R.string.text_take)
+            onRetakeEvent.call()
+        }
     }
     fun checkEvent() {
         onCheckEvent.call()
