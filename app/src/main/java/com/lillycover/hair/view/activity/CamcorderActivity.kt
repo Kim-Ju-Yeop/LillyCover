@@ -9,7 +9,9 @@ import androidx.lifecycle.Observer
 import com.lillycover.hair.base.view.BaseActivity
 import com.lillycover.hair.databinding.ActivityCamcorderBinding
 import com.lillycover.hair.viewmodel.activity.CamcorderViewModel
+import com.lillycover.hair.widget.etc.isLillyCoverSSID
 import com.lillycover.hair.widget.extension.startActivityWithFinish
+import com.lillycover.hair.widget.extension.startWifiSetting
 import com.lillycover.hair.widget.util.AddressUtil
 import com.lillycover.hair.widget.util.DiagnoseUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,7 +40,7 @@ class CamcorderActivity : BaseActivity<ActivityCamcorderBinding, CamcorderViewMo
     override fun observerViewModel() {
         with(mViewModel) {
             onLostEvent.observe(this@CamcorderActivity, Observer {
-                onBackPressed()
+                if (!isLillyCoverSSID(applicationContext)) onBackPressed()
             })
             onCreateMediaPlayerEvent.observe(this@CamcorderActivity, Observer {
                 textureview.keepScreenOn = true
@@ -58,11 +60,18 @@ class CamcorderActivity : BaseActivity<ActivityCamcorderBinding, CamcorderViewMo
                 imageViewList[imageViewIdx].setImageBitmap(null)
             })
             onCheckEvent.observe(this@CamcorderActivity, Observer {
-                val bitmapDrawable = imageViewList[imageViewIdx].drawable as BitmapDrawable
-                DiagnoseUtil.hairBitmapList.add(bitmapDrawable.bitmap)
-
-                imageViewIdx++
-                if (imageViewIdx == imageViewList.size) startActivityWithFinish(CameraActivity::class.java)
+                if (imageViewIdx != imageViewList.size-1) {
+                    val bitmapDrawable = imageViewList[imageViewIdx].drawable as BitmapDrawable
+                    DiagnoseUtil.hairBitmapList.add(bitmapDrawable.bitmap)
+                    imageViewIdx++
+                } else startWifiSetting()
+            })
+            onNextEvent.observe(this@CamcorderActivity, Observer {
+                if (!isLillyCoverSSID(applicationContext)) {
+                    val bitmapDrawable = imageViewList[imageViewIdx].drawable as BitmapDrawable
+                    DiagnoseUtil.hairBitmapList.add(bitmapDrawable.bitmap)
+                    startActivityWithFinish(CameraActivity::class.java)
+                }
             })
         }
     }

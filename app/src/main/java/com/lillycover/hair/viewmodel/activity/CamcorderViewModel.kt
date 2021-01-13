@@ -10,6 +10,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import com.lillycover.hair.base.viewmodel.BaseViewModel
 import com.lillycover.hair.widget.SingleLiveEvent
+import com.lillycover.hair.widget.etc.isLillyCoverSSID
 import dagger.hilt.android.qualifiers.ActivityContext
 import org.videolan.libvlc.IVLCVout
 import org.videolan.libvlc.LibVLC
@@ -32,6 +33,7 @@ class CamcorderViewModel @ViewModelInject constructor(
     val onTakeEvent = SingleLiveEvent<Unit>()
     val onRetakeEvent = SingleLiveEvent<Unit>()
     val onCheckEvent = SingleLiveEvent<Unit>()
+    val onNextEvent = SingleLiveEvent<Unit>()
 
     init {
         observerNetwork()
@@ -68,7 +70,7 @@ class CamcorderViewModel @ViewModelInject constructor(
         onRetakeEvent.call()
     }
     fun checkEvent() {
-        isTake.value = false
+        if (imageViewIdx != imageViewList.size-1) isTake.value = false
         onCheckEvent.call()
     }
 
@@ -79,7 +81,8 @@ class CamcorderViewModel @ViewModelInject constructor(
         networkRequest.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
         connectivityManager.registerNetworkCallback(networkRequest.build(), object: ConnectivityManager.NetworkCallback() {
             override fun onLost(network: Network) {
-                onLostEvent.postCall()
+                if (imageViewIdx != imageViewList.size-1) onLostEvent.postCall()
+                else onNextEvent.postCall()
             }
         })
     }
