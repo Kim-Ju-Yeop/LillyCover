@@ -26,11 +26,14 @@ buildscript {
         jpegkit_version = "0.1.0"
 
         volley_version = "1.1.1"
+
+        mp_android_chart_version = "v3.1.0"
     }
 
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
@@ -44,6 +47,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
