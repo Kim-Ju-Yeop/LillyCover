@@ -91,4 +91,7 @@ dependencies {
 
     // Volley
     implementation "com.android.volley:volley:$volley_version"
+
+    // MPAndroidChart
+    implementation "com.github.PhilJay:MPAndroidChart:$mp_android_chart_version"
 }
