@@ -1,7 +1,5 @@
 package com.lillycover.hair.view.activity
 
-import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.github.mikephil.charting.animation.Easing
@@ -11,6 +9,7 @@ import com.lillycover.hair.R
 import com.lillycover.hair.base.view.BaseActivity
 import com.lillycover.hair.databinding.ActivityResultBinding
 import com.lillycover.hair.viewmodel.activity.ResultViewModel
+import com.lillycover.hair.widget.extension.startActivityWithFinish
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_result.*
 
@@ -19,29 +18,27 @@ class ResultActivity : BaseActivity<ActivityResultBinding, ResultViewModel>() {
 
     override val mViewModel: ResultViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initChart()
-    }
-
     override fun observerViewModel() {
         with(mViewModel) {
             diagnoseRepositoryImpl.onSuccessEvent.observe(this@ResultActivity, Observer {
+                initChart()
                 mViewModel.setChartData(it)
             })
             diagnoseRepositoryImpl.onErrorEvent.observe(this@ResultActivity, Observer {
-                Toast.makeText(this@ResultActivity, "서버 통신 실패", Toast.LENGTH_SHORT).show()
+                onBackPressed()
             })
-            onCompleteEvent.observe(this@ResultActivity, Observer {
+            chartData.observe(this@ResultActivity, Observer {
                 chart.data = it
                 chart.invalidate()
             })
         }
     }
 
-    private fun initChart() {
+    override fun onBackPressed() {
+        startActivityWithFinish(MainActivity::class.java)
+    }
 
-        // Chart 전체적인 설정
+    private fun initChart() {
         chart.webAlpha = 100
         chart.webLineWidth = 1F
         chart.webLineWidth = 1F
@@ -52,7 +49,6 @@ class ResultActivity : BaseActivity<ActivityResultBinding, ResultViewModel>() {
         chart.setBackgroundColor(resources.getColor(R.color.white))
         chart.animateXY(1400, 1400, Easing.EaseInOutQuad)
 
-        // Chart 바깥 항목 설정
         val xAxis = chart.xAxis
         xAxis.textSize = 15F
         xAxis.textColor = resources.getColor(R.color.black)
@@ -63,14 +59,12 @@ class ResultActivity : BaseActivity<ActivityResultBinding, ResultViewModel>() {
             }
         }
 
-        // Chart 내부 항목 설정
         val yAxis = chart.yAxis
         yAxis.axisMinimum = 0F
-        yAxis.axisMaximum = 80F
+        yAxis.axisMaximum = 100F
         yAxis.setDrawLabels(false)
         yAxis.setLabelCount(6, false)
 
-        // Chart 데이터 설명 설정
         val legend = chart.legend
         legend.xEntrySpace = 10F
         legend.yEntrySpace = 0F
