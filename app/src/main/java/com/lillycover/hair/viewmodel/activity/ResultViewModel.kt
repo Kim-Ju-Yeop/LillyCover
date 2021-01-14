@@ -1,7 +1,6 @@
 package com.lillycover.hair.viewmodel.activity
 
 import android.content.Context
-import android.graphics.Color
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import com.github.mikephil.charting.data.RadarData
@@ -22,11 +21,12 @@ class ResultViewModel @ViewModelInject constructor(
     val diagnoseRepositoryImpl: DiagnoseRepositoryImpl
 ) : BaseViewModel() {
 
-    val isComplete = MutableLiveData<Boolean>()
-    val onCompleteEvent = MutableLiveData<RadarData>()
+    val isLoading = MutableLiveData<Boolean>()
+    val chartData = MutableLiveData<RadarData>()
 
     init {
         getResult()
+        isLoading.value = true
     }
 
     private fun getResult() {
@@ -55,8 +55,8 @@ class ResultViewModel @ViewModelInject constructor(
             myEntryList.add(RadarEntry(hairLoss.toFloat()))
 
             val avgDataSet = RadarDataSet(avgEntryList, context.resources.getString(R.string.text_avg_result))
-            avgDataSet.color = Color.parseColor("#CECECE")
-            avgDataSet.fillColor = Color.parseColor("#CECECE")
+            avgDataSet.color = context.resources.getColor(R.color.gray)
+            avgDataSet.fillColor = context.resources.getColor(R.color.gray)
             avgDataSet.fillAlpha = 100
             avgDataSet.lineWidth = 2F
             avgDataSet.setDrawFilled(true)
@@ -75,8 +75,8 @@ class ResultViewModel @ViewModelInject constructor(
             val data = RadarData(dataSetList)
             data.setDrawValues(false)
 
-            isComplete.value = true
-            onCompleteEvent.value = data
+            isLoading.value = false
+            chartData.value = data
         }
     }
 }

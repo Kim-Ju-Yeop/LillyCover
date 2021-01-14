@@ -11,44 +11,49 @@
             type="com.lillycover.hair.viewmodel.activity.ResultViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context=".view.activity.ResultActivity">
 
-        <Toolbar
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_result"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_gravity="center" />
-        </Toolbar>
+            <Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <com.github.mikephil.charting.charts.RadarChart
-            android:id="@+id/chart"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:visibility="@{viewModel.isComplete ? View.VISIBLE : View.INVISIBLE}"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_result"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_gravity="center" />
+            </Toolbar>
+
+            <com.github.mikephil.charting.charts.RadarChart
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:visibility="@{viewModel.isLoading ? View.INVISIBLE : View.VISIBLE}"/>
+        </LinearLayout>
 
         <androidx.core.widget.ContentLoadingProgressBar
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="@{viewModel.isComplete ? View.INVISIBLE : View.VISIBLE}"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
             android:theme="@style/Theme.LillyCover"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
