@@ -16,6 +16,8 @@
 
     <string name="text_diagnose_second" tools:ignore="TypographyFractions">2/3 단계</string>
 
+    <string name="text_diagnose_third" tools:ignore="TypographyFractions">3/3 단계</string>
+
     <string name="text_result">두피 진단결과</string>
     <string name="text_avg_result">평균 두피 진단결과</string>
     <string name="text_my_result">나의 두피 진단결과</string>
