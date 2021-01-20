@@ -1,5 +1,6 @@
 package com.lillycover.hair.view.activity
 
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.lillycover.hair.base.view.BaseActivity
@@ -15,8 +16,11 @@ class SurveyActivity : BaseActivity<ActivitySurveyBinding, SurveyViewModel>() {
 
     override fun observerViewModel() {
         with(mViewModel) {
-            surveyRepositoryImpl.onSuccessEvent.observe(this@SurveyActivity, Observer {
+            surveyRepositoryImpl.onSuccessEventGetQuestion.observe(this@SurveyActivity, Observer {
                 setSurveyItemList(it)
+            })
+            surveyRepositoryImpl.onSuccessEventPostReply.observe(this@SurveyActivity, Observer {
+                Toast.makeText(applicationContext, "데이터베이스에 추가했습니다.", Toast.LENGTH_SHORT).show()
             })
             surveyRepositoryImpl.onErrorEvent.observe(this@SurveyActivity, Observer {
                 onBackPressed()
