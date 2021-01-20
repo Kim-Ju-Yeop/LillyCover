@@ -1,8 +1,8 @@
-package com.lillycover.hair.network.model
+package com.lillycover.hair.network.model.request
 
 import android.graphics.Bitmap
 
-data class DiagnoseRequestModel(
+data class ResultRequest(
     val name: String,
     val file0: Bitmap,
     val file1: Bitmap,

@@ -9,16 +9,16 @@ import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.interfaces.datasets.IRadarDataSet
 import com.lillycover.hair.R
 import com.lillycover.hair.base.viewmodel.BaseViewModel
-import com.lillycover.hair.network.model.DiagnoseRequestModel
-import com.lillycover.hair.network.model.DiagnoseResponseModel
-import com.lillycover.hair.network.repositoryImpl.DiagnoseRepositoryImpl
+import com.lillycover.hair.network.model.request.ResultRequest
+import com.lillycover.hair.network.model.response.ResultResponse
+import com.lillycover.hair.network.repositoryImpl.ResultRepositoryImpl
 import com.lillycover.hair.widget.util.DiagnoseUtil
 import com.lillycover.hair.widget.util.DiagnoseUtil.faceBitmap
 import dagger.hilt.android.qualifiers.ActivityContext
 
 class ResultViewModel @ViewModelInject constructor(
     @ActivityContext private val context: Context,
-    val diagnoseRepositoryImpl: DiagnoseRepositoryImpl
+    val resultRepositoryImpl: ResultRepositoryImpl
 ) : BaseViewModel() {
 
     val isLoading = MutableLiveData<Boolean>()
@@ -31,13 +31,13 @@ class ResultViewModel @ViewModelInject constructor(
 
     private fun getResult() {
         with(DiagnoseUtil.hairBitmapList) {
-            val diagnoseRequestModel = DiagnoseRequestModel("김주엽", get(0), get(1), get(2), get(3), get(4), faceBitmap.value!!)
-            diagnoseRepositoryImpl.getResult(diagnoseRequestModel)
+            val resultRequest = ResultRequest("김주엽", get(0), get(1), get(2), get(3), get(4), faceBitmap.value!!)
+            resultRepositoryImpl.getResult(resultRequest)
         }
     }
 
-    fun setChartData(diagnoseResponseModel: DiagnoseResponseModel) {
-        with(diagnoseResponseModel) {
+    fun setChartData(resultResponse: ResultResponse) {
+        with(resultResponse) {
             val avgEntryList = ArrayList<RadarEntry>()
             avgEntryList.add(RadarEntry(60.toFloat()))
             avgEntryList.add(RadarEntry(60.toFloat()))

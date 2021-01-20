@@ -1,6 +1,6 @@
-package com.lillycover.hair.network.model
+package com.lillycover.hair.network.model.response
 
-data class DiagnoseResponseModel(
+data class ResultResponse(
     val cnt: Int,
     val hairCntAvg: Int,
     val hairLoss: Int,

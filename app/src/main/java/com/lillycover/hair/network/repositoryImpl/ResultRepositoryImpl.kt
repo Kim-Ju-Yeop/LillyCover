@@ -8,9 +8,9 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.lillycover.hair.network.model.DiagnoseRequestModel
-import com.lillycover.hair.network.model.DiagnoseResponseModel
-import com.lillycover.hair.network.repository.DiagnoseRepository
+import com.lillycover.hair.network.model.request.ResultRequest
+import com.lillycover.hair.network.model.response.ResultResponse
+import com.lillycover.hair.network.repository.ResultRepository
 import com.lillycover.hair.widget.SingleLiveEvent
 import com.lillycover.hair.widget.etc.bitmapToBase64
 import com.lillycover.hair.widget.util.AddressUtil
@@ -18,15 +18,15 @@ import dagger.hilt.android.qualifiers.ActivityContext
 import org.json.JSONObject
 import javax.inject.Inject
 
-class DiagnoseRepositoryImpl @Inject constructor(
+class ResultRepositoryImpl @Inject constructor(
     @ActivityContext private val context: Context
-) : DiagnoseRepository {
+) : ResultRepository {
 
-    val onSuccessEvent = MutableLiveData<DiagnoseResponseModel>()
+    val onSuccessEvent = MutableLiveData<ResultResponse>()
     val onErrorEvent = SingleLiveEvent<Throwable>()
 
-    override fun getResult(diagnoseRequestModel: DiagnoseRequestModel) {
-        with(diagnoseRequestModel) {
+    override fun getResult(resultRequest: ResultRequest) {
+        with(resultRequest) {
             val requestQueue = Volley.newRequestQueue(context)
             val jsonObject = JSONObject()
             jsonObject.put("name", name)
@@ -37,11 +37,11 @@ class DiagnoseRepositoryImpl @Inject constructor(
             jsonObject.put("file4", bitmapToBase64(file4))
             jsonObject.put("file5", bitmapToBase64(file5))
 
-            val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, AddressUtil.WEB_HOST, jsonObject,
+            val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, AddressUtil.ALGORITH_HOST, jsonObject,
                 object: Response.Listener<JSONObject> {
                     override fun onResponse(response: JSONObject) {
                         with(response) {
-                            onSuccessEvent.value = DiagnoseResponseModel(
+                            onSuccessEvent.value = ResultResponse(
                                 Integer.parseInt(getString("cnt")),
                                 Integer.parseInt(getString("hair_cnt_avg")),
                                 Integer.parseInt(getString("hairloss")),
