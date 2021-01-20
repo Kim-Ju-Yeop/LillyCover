@@ -23,15 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LillyCover">
         <activity android:name=".view.activity.ResultActivity" />
-        <activity android:name=".view.activity.SurveyActivity" />
-        <activity android:name=".view.activity.CameraActivity" />
-        <activity android:name=".view.activity.CamcorderActivity" />
-        <activity android:name=".view.activity.MainActivity">
+        <activity android:name=".view.activity.SurveyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.activity.CameraActivity" />
+        <activity android:name=".view.activity.CamcorderActivity" />
+        <activity android:name=".view.activity.MainActivity" />
     </application>
 
 </manifest>
