@@ -20,11 +20,11 @@ class ResultActivity : BaseActivity<ActivityResultBinding, ResultViewModel>() {
 
     override fun observerViewModel() {
         with(mViewModel) {
-            diagnoseRepositoryImpl.onSuccessEvent.observe(this@ResultActivity, Observer {
+            resultRepositoryImpl.onSuccessEvent.observe(this@ResultActivity, Observer {
                 initChart()
                 mViewModel.setChartData(it)
             })
-            diagnoseRepositoryImpl.onErrorEvent.observe(this@ResultActivity, Observer {
+            resultRepositoryImpl.onErrorEvent.observe(this@ResultActivity, Observer {
                 onBackPressed()
             })
             chartData.observe(this@ResultActivity, Observer {
