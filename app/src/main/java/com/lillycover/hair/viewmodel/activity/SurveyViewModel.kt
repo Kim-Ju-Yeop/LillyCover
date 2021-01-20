@@ -4,12 +4,14 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import com.lillycover.hair.R
 import com.lillycover.hair.base.viewmodel.BaseViewModel
+import com.lillycover.hair.network.model.request.SurveyReplyRequest
 import com.lillycover.hair.network.model.response.SurveyQuestionResponse
 import com.lillycover.hair.network.repositoryImpl.SurveyRepositoryImpl
 import com.lillycover.hair.viewmodel.recyclerview.SurveyItemViewModel
 import com.lillycover.hair.widget.navigator.SurveyItemNavigator
 import com.lillycover.hair.widget.recyclerview.RecyclerViewItem
 import com.lillycover.hair.widget.util.DiagnoseUtil
+import java.sql.Timestamp
 
 class SurveyViewModel @ViewModelInject constructor(
     val surveyRepositoryImpl: SurveyRepositoryImpl
@@ -26,7 +28,12 @@ class SurveyViewModel @ViewModelInject constructor(
     }
 
     fun checkEvent() {
-        // 설문내용 DB 연결
+        with(DiagnoseUtil.surveySolutionArray) {
+            val surveyReplyRequest = SurveyReplyRequest(1, Timestamp(System.currentTimeMillis()),
+                get(0), get(1), get(2), get(3), get(4), get(5), get(6),
+                get(7), get(8), get(9), get(10), get(11), get(12), get(13))
+            surveyRepositoryImpl.postReply(surveyReplyRequest)
+        }
     }
 
     private fun List<SurveyQuestionResponse>.toRecyclerViewItemList() = map { it.toViewModel() }
