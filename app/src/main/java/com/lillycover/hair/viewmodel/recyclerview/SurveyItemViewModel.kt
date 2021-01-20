@@ -4,7 +4,7 @@ import com.lillycover.hair.base.viewmodel.BaseViewModel
 import com.lillycover.hair.network.model.response.SurveyQuestionResponse
 
 class SurveyItemViewModel(
-    private val surveyQuestionResposne: SurveyQuestionResponse
+    val surveyQuestionResposne: SurveyQuestionResponse
 ) : BaseViewModel() {
 
     var questionText: String
