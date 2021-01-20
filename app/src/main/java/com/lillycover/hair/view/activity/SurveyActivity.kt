@@ -16,7 +16,7 @@ class SurveyActivity : BaseActivity<ActivitySurveyBinding, SurveyViewModel>() {
     override fun observerViewModel() {
         with(mViewModel) {
             surveyRepositoryImpl.onSuccessEvent.observe(this@SurveyActivity, Observer {
-
+                setSurveyItemList(it)
             })
             surveyRepositoryImpl.onErrorEvent.observe(this@SurveyActivity, Observer {
                 onBackPressed()

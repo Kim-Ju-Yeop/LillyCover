@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
         <variable
             name="viewModel"
             type="com.lillycover.hair.viewmodel.recyclerview.SurveyItemViewModel" />
@@ -20,37 +21,50 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@={viewModel.questionText}"
             android:textSize="14sp"
             android:textColor="@color/black"
             tools:text="샴푸를 하지 않았을 때 어떤 상태인가요?" />
 
         <RadioGroup
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/first_button">
 
             <RadioButton
+                android:id="@+id/first_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.item1Text}"
+                android:visibility="@{viewModel.item1Text.empty ? View.GONE : View.VISIBLE}"
                 tools:text="매우 아니다" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.item2Text}"
+                android:visibility="@{viewModel.item2Text.empty ? View.GONE : View.VISIBLE}"
                 tools:text="아니다" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.item3Text}"
+                android:visibility="@{viewModel.item3Text.empty ? View.GONE : View.VISIBLE}"
                 tools:text="보통이다" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.item4Text}"
+                android:visibility="@{viewModel.item4Text.empty ? View.GONE : View.VISIBLE}"
                 tools:text="그렇다" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.item5Text}"
+                android:visibility="@{viewModel.item5Text.empty ? View.GONE : View.VISIBLE}"
                 tools:text="매우 그렇다" />
         </RadioGroup>
 
