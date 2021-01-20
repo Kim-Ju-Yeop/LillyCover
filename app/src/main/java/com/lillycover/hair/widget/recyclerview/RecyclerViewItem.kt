@@ -8,6 +8,6 @@ data class RecyclerViewItem(val viewModel: Any, val navigator: Any?, @LayoutRes 
 
     fun bind(binding: ViewDataBinding) {
         binding.setVariable(BR.viewModel, viewModel)
-//        if (navigator != null) binding.setVariable(BR.navigator, navigator)
+        if (navigator != null) binding.setVariable(BR.navigator, navigator)
     }
 }
