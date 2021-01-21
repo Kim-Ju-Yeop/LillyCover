@@ -15,6 +15,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerViewViewHolder, position: Int) {
         getItem(position).bind(holder.binding)
+        getItem(position).updateUI()
         holder.binding.executePendingBindings()
     }
 
