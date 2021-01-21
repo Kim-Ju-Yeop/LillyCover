@@ -11,7 +11,6 @@ import com.android.volley.toolbox.Volley
 import com.lillycover.hair.network.model.request.ResultRequest
 import com.lillycover.hair.network.model.response.ResultResponse
 import com.lillycover.hair.network.repository.ResultRepository
-import com.lillycover.hair.widget.SingleLiveEvent
 import com.lillycover.hair.widget.etc.bitmapToBase64
 import com.lillycover.hair.widget.util.AddressUtil
 import dagger.hilt.android.qualifiers.ActivityContext
@@ -23,7 +22,7 @@ class ResultRepositoryImpl @Inject constructor(
 ) : ResultRepository {
 
     val onSuccessEvent = MutableLiveData<ResultResponse>()
-    val onErrorEvent = SingleLiveEvent<Throwable>()
+    val onErrorEvent = MutableLiveData<Throwable>()
 
     override fun getResult(resultRequest: ResultRequest) {
         with(resultRequest) {
@@ -37,7 +36,7 @@ class ResultRepositoryImpl @Inject constructor(
             jsonObject.put("file4", bitmapToBase64(file4))
             jsonObject.put("file5", bitmapToBase64(file5))
 
-            val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, AddressUtil.ALGORITH_HOST, jsonObject,
+            val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, AddressUtil.ALGORITHM_HOST, jsonObject,
                 object: Response.Listener<JSONObject> {
                     override fun onResponse(response: JSONObject) {
                         with(response) {

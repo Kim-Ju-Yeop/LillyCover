@@ -41,8 +41,6 @@ class SurveyViewModel @ViewModelInject constructor(
     private fun SurveyItemViewModel.toRecyclerViewItem() = RecyclerViewItem(this, this@SurveyViewModel, R.layout.item_survey)
 
     override fun radioButtonEvent(buttonIdx: Int, surveyQuestionResponse: SurveyQuestionResponse) {
-        with(surveyQuestionResponse) {
-            DiagnoseUtil.surveySolutionArray[idx-1] = buttonIdx
-        }
+        DiagnoseUtil.surveySolutionArray[surveyQuestionResponse.idx-1] = buttonIdx
     }
 }
