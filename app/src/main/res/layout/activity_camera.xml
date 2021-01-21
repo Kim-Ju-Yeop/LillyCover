@@ -62,6 +62,7 @@
                 android:text="@={viewModel.buttonText}"
                 android:layout_marginEnd="10dp"
                 android:onClick="@{() -> viewModel.takeEvent()}"
+                tools:text="촬영"
                 tools:ignore="ButtonStyle" />
 
             <Button
