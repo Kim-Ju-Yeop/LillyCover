@@ -61,7 +61,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding, ResultViewModel>() {
 
         val yAxis = chart.yAxis
         yAxis.axisMinimum = 0F
-        yAxis.axisMaximum = 100F
+        yAxis.axisMaximum = 80F
         yAxis.setDrawLabels(false)
         yAxis.setLabelCount(6, false)
 

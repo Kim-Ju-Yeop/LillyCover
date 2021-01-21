@@ -29,6 +29,7 @@ class ResultRepositoryImpl @Inject constructor(
             val requestQueue = Volley.newRequestQueue(context)
             val jsonObject = JSONObject()
             jsonObject.put("name", name)
+            jsonObject.put("user_id", user_id)
             jsonObject.put("file0", bitmapToBase64(file0))
             jsonObject.put("file1", bitmapToBase64(file1))
             jsonObject.put("file2", bitmapToBase64(file2))

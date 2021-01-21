@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 
 data class ResultRequest(
     val name: String,
+    val user_id: Int,
     val file0: Bitmap,
     val file1: Bitmap,
     val file2: Bitmap,
