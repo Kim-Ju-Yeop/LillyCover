@@ -75,7 +75,7 @@ class ResultViewModel @ViewModelInject constructor(
 
     private fun getResult() {
         with(DiagnoseUtil.hairBitmapList) {
-            val resultRequest = ResultRequest("김주엽", get(0), get(1), get(2), get(3), get(4), faceBitmap.value!!)
+            val resultRequest = ResultRequest("김주엽", 1376, get(0), get(1), get(2), get(3), get(4), faceBitmap.value!!)
             resultRepositoryImpl.getResult(resultRequest)
         }
     }
