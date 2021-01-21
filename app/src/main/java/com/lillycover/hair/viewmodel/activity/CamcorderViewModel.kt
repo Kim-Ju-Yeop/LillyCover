@@ -10,7 +10,6 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import com.lillycover.hair.base.viewmodel.BaseViewModel
 import com.lillycover.hair.widget.SingleLiveEvent
-import com.lillycover.hair.widget.etc.isLillyCoverSSID
 import dagger.hilt.android.qualifiers.ActivityContext
 import org.videolan.libvlc.IVLCVout
 import org.videolan.libvlc.LibVLC

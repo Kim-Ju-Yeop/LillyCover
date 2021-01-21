@@ -24,7 +24,7 @@ class SurveyRepositoryImpl @Inject constructor(
 
     val onSuccessEventGetQuestion = MutableLiveData<List<SurveyQuestionResponse>>()
     val onSuccessEventPostReply = SingleLiveEvent<Unit>()
-    val onErrorEvent = SingleLiveEvent<Throwable>()
+    val onErrorEvent = MutableLiveData<Throwable>()
 
     override fun getQuestion() {
         val host = AddressUtil.LILLYCOVER_HOST + "/SurveyQuestion.php"

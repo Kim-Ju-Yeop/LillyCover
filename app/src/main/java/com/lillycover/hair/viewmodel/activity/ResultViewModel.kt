@@ -29,13 +29,6 @@ class ResultViewModel @ViewModelInject constructor(
         isLoading.value = true
     }
 
-    private fun getResult() {
-        with(DiagnoseUtil.hairBitmapList) {
-            val resultRequest = ResultRequest("김주엽", get(0), get(1), get(2), get(3), get(4), faceBitmap.value!!)
-            resultRepositoryImpl.getResult(resultRequest)
-        }
-    }
-
     fun setChartData(resultResponse: ResultResponse) {
         with(resultResponse) {
             val avgEntryList = ArrayList<RadarEntry>()
@@ -77,6 +70,13 @@ class ResultViewModel @ViewModelInject constructor(
 
             isLoading.value = false
             chartData.value = data
+        }
+    }
+
+    private fun getResult() {
+        with(DiagnoseUtil.hairBitmapList) {
+            val resultRequest = ResultRequest("김주엽", get(0), get(1), get(2), get(3), get(4), faceBitmap.value!!)
+            resultRepositoryImpl.getResult(resultRequest)
         }
     }
 }
