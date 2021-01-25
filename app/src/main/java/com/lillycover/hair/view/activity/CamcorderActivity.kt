@@ -25,7 +25,9 @@ class CamcorderActivity : BaseActivity<ActivityCamcorderBinding, CamcorderViewMo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setImageViewData()
+        DiagnoseUtil.hairBitmapList.clear()
     }
 
     override fun onResume() {
