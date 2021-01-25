@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
+import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.lillycover.hair.base.view.BaseActivity
@@ -18,6 +19,11 @@ import kotlinx.android.synthetic.main.activity_camera.*
 class CameraActivity : BaseActivity<ActivityCameraBinding, CameraViewModel>() {
 
     override val mViewModel: CameraViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        DiagnoseUtil.faceBitmap.value = null
+    }
 
     override fun observerViewModel() {
         with(mViewModel) {
