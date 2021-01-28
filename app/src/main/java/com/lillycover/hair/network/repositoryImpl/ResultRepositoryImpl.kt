@@ -43,12 +43,12 @@ class ResultRepositoryImpl @Inject constructor(
                         with(response) {
                             onSuccessEvent.value = ResultResponse(
                                 Integer.parseInt(getString("cnt")),
-                                Integer.parseInt(getString("hair_cnt_avg")),
-                                Integer.parseInt(getString("hairloss")),
-                                Integer.parseInt(getString("keratin")),
-                                Integer.parseInt(getString("oil")),
-                                Integer.parseInt(getString("pore_area_ratio")),
-                                Integer.parseInt(getString("redness")),
+                                getString("vis_dry_scalp").toDouble(),
+                                getString("vis_oily_scalp").toDouble(),
+                                getString("vis_sensitive_scalp").toDouble(),
+                                getString("vis_forehead_ratio").toDouble(),
+                                getString("vis_thickness").toDouble(),
+                                getString("vis_hairloss").toDouble(),
                             )
                         }
                     }
