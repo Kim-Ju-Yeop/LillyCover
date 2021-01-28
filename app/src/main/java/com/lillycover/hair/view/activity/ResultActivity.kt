@@ -53,7 +53,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding, ResultViewModel>() {
         xAxis.textSize = 15F
         xAxis.textColor = resources.getColor(R.color.black)
         xAxis.valueFormatter = object: IndexAxisValueFormatter() {
-            val valueArr = arrayOf("각질", "홍조", "유분", "두께", "모공", "이마비율")
+            val valueArr = arrayOf("건성", "지성", "민감성", "이마비율", "모발건강", "탈모")
             override fun getFormattedValue(value: Float): String {
                 return valueArr[value.toInt() % valueArr.size]
             }
