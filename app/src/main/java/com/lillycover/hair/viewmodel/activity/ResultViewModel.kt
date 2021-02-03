@@ -50,15 +50,17 @@ class ResultViewModel @ViewModelInject constructor(
             val avgDataSet = RadarDataSet(avgEntryList, context.resources.getString(R.string.text_avg_result))
             avgDataSet.color = context.resources.getColor(R.color.gray)
             avgDataSet.fillColor = context.resources.getColor(R.color.gray)
-            avgDataSet.fillAlpha = 100
+            avgDataSet.fillAlpha = 180
             avgDataSet.lineWidth = 2F
+            avgDataSet.isHighlightEnabled = false
             avgDataSet.setDrawFilled(true)
 
             val userDataSet = RadarDataSet(myEntryList, context.resources.getString(R.string.text_my_result))
             userDataSet.color = context.resources.getColor(R.color.design_default_color_primary)
             userDataSet.fillColor = context.resources.getColor(R.color.design_default_color_primary)
-            userDataSet.fillAlpha = 100
+            userDataSet.fillAlpha = 180
             userDataSet.lineWidth = 2F
+            userDataSet.isHighlightEnabled = false
             userDataSet.setDrawFilled(true)
 
             val dataSetList = ArrayList<IRadarDataSet>()
