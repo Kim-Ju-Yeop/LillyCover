@@ -2,7 +2,6 @@ package com.lillycover.hair.base.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lillycover.hair.widget.SingleLiveEvent
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.SingleObserver

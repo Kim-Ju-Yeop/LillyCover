@@ -46,6 +46,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding, ResultViewModel>() {
         chart.webColorInner = resources.getColor(R.color.black)
         chart.isEnabled = false
         chart.description.isEnabled = false
+        chart.isRotationEnabled = false
         chart.setBackgroundColor(resources.getColor(R.color.white))
         chart.animateXY(1400, 1400, Easing.EaseInOutQuad)
 
@@ -61,9 +62,9 @@ class ResultActivity : BaseActivity<ActivityResultBinding, ResultViewModel>() {
 
         val yAxis = chart.yAxis
         yAxis.axisMinimum = 0F
-        yAxis.axisMaximum = 80F
+        yAxis.axisMaximum = 100F
         yAxis.setDrawLabels(false)
-        yAxis.setLabelCount(6, false)
+        yAxis.setLabelCount(6, true)
 
         val legend = chart.legend
         legend.xEntrySpace = 10F
