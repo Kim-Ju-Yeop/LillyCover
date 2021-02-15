@@ -32,12 +32,12 @@ class ResultViewModel @ViewModelInject constructor(
     fun setChartData(resultResponse: ResultResponse) {
         with(resultResponse) {
             val avgEntryList = ArrayList<RadarEntry>()
-            avgEntryList.add(RadarEntry(60.toFloat()))
-            avgEntryList.add(RadarEntry(60.toFloat()))
-            avgEntryList.add(RadarEntry(60.toFloat()))
-            avgEntryList.add(RadarEntry(60.toFloat()))
-            avgEntryList.add(RadarEntry(60.toFloat()))
-            avgEntryList.add(RadarEntry(60.toFloat()))
+            avgEntryList.add(RadarEntry(50.toFloat()))
+            avgEntryList.add(RadarEntry(50.toFloat()))
+            avgEntryList.add(RadarEntry(50.toFloat()))
+            avgEntryList.add(RadarEntry(50.toFloat()))
+            avgEntryList.add(RadarEntry(50.toFloat()))
+            avgEntryList.add(RadarEntry(50.toFloat()))
 
             val myEntryList = ArrayList<RadarEntry>()
             myEntryList.add(RadarEntry(vis_dry_scalp.toFloat()))
