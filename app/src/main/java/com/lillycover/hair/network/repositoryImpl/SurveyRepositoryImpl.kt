@@ -96,6 +96,14 @@ class SurveyRepositoryImpl @Inject constructor(
                     params["question12_solution"] = question12_solution.toString()
                     params["question13_solution"] = question13_solution.toString()
                     params["question14_solution"] = question14_solution.toString()
+                    params["question15_solution"] = question15_solution.toString()
+                    params["question16_solution"] = question16_solution.toString()
+                    params["question17_solution"] = question17_solution.toString()
+                    params["question18_solution"] = question18_solution.toString()
+                    params["question19_solution"] = question19_solution.toString()
+                    params["question20_solution"] = question20_solution.toString()
+                    params["question21_solution"] = question21_solution.toString()
+                    params["question22_solution"] = question22_solution.toString()
                     return params
                 }
             }

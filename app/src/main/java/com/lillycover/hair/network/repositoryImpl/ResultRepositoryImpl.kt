@@ -47,7 +47,8 @@ class ResultRepositoryImpl @Inject constructor(
                                 getString("vis_oily_scalp").toDouble(),
                                 getString("vis_sensitive_scalp").toDouble(),
                                 getString("vis_forehead_ratio").toDouble(),
-                                getString("vis_thickness").toDouble(),
+                                getString("vis_scalp_con").toDouble(),
+                                getString("vis_hair_con").toDouble(),
                                 getString("vis_hairloss").toDouble(),
                             )
                         }

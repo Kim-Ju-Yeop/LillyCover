@@ -31,7 +31,8 @@ class SurveyViewModel @ViewModelInject constructor(
         with(DiagnoseUtil.surveySolutionArray) {
             val surveyReplyRequest = SurveyReplyRequest(1376, Timestamp(System.currentTimeMillis()),
                 get(0), get(1), get(2), get(3), get(4), get(5), get(6),
-                get(7), get(8), get(9), get(10), get(11), get(12), get(13))
+                get(7), get(8), get(9), get(10), get(11), get(12), get(13),
+                get(14), get(15), get(16), get(17), get(18), get(19), get(20), get(21))
             surveyRepositoryImpl.postReply(surveyReplyRequest)
         }
     }

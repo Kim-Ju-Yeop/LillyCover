@@ -17,7 +17,7 @@ class SurveyActivity : BaseActivity<ActivitySurveyBinding, SurveyViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DiagnoseUtil.surveySolutionArray = arrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+        DiagnoseUtil.surveySolutionArray = arrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
     }
 
     override fun observerViewModel() {
