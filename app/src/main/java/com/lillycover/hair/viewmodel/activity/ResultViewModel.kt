@@ -38,13 +38,15 @@ class ResultViewModel @ViewModelInject constructor(
             avgEntryList.add(RadarEntry(50.toFloat()))
             avgEntryList.add(RadarEntry(50.toFloat()))
             avgEntryList.add(RadarEntry(50.toFloat()))
+            avgEntryList.add(RadarEntry(50.toFloat()))
 
             val myEntryList = ArrayList<RadarEntry>()
             myEntryList.add(RadarEntry(vis_dry_scalp.toFloat()))
             myEntryList.add(RadarEntry(vis_oily_scalp.toFloat()))
             myEntryList.add(RadarEntry(vis_sensitive_scalp.toFloat()))
             myEntryList.add(RadarEntry(vis_forehead_ratio.toFloat()))
-            myEntryList.add(RadarEntry(vis_thickness.toFloat()))
+            myEntryList.add(RadarEntry(vis_scalp_con.toFloat()))
+            myEntryList.add(RadarEntry(vis_hair_con.toFloat()))
             myEntryList.add(RadarEntry(vis_hairloss.toFloat()))
 
             val avgDataSet = RadarDataSet(avgEntryList, context.resources.getString(R.string.text_avg_result))
