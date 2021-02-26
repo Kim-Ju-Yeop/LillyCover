@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="navigator"
+            type="com.lillycover.hair.widget.navigator.SurveyItemNavigator" />
+        <variable
+            name="viewModel"
+            type="com.lillycover.hair.viewmodel.recyclerview.SurveyItemViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.questionText}"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            tools:text="샴푸를 하지 않았을 때 어떤 상태인가요?" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.item1Text}"
+                android:visibility="@{viewModel.item1Text.empty ? View.GONE : View.VISIBLE}"
+                android:onClick="@{() -> navigator.radioButtonEvent(1, viewModel.surveyQuestionResposne)}"
+                android:checked="@{viewModel.item1Checked}"
+                tools:text="매우 아니다" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.item2Text}"
+                android:visibility="@{viewModel.item2Text.empty ? View.GONE : View.VISIBLE}"
+                android:onClick="@{() -> navigator.radioButtonEvent(2, viewModel.surveyQuestionResposne)}"
+                android:checked="@{viewModel.item2Checked}"
+                tools:text="아니다" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.item3Text}"
+                android:visibility="@{viewModel.item3Text.empty ? View.GONE : View.VISIBLE}"
+                android:onClick="@{() -> navigator.radioButtonEvent(3, viewModel.surveyQuestionResposne)}"
+                android:checked="@{viewModel.item3Checked}"
+                tools:text="보통이다" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.item4Text}"
+                android:visibility="@{viewModel.item4Text.empty ? View.GONE : View.VISIBLE}"
+                android:onClick="@{() -> navigator.radioButtonEvent(4, viewModel.surveyQuestionResposne)}"
+                android:checked="@{viewModel.item4Checked}"
+                tools:text="그렇다" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.item5Text}"
+                android:visibility="@{viewModel.item5Text.empty ? View.GONE : View.VISIBLE}"
+                android:onClick="@{() -> navigator.radioButtonEvent(5, viewModel.surveyQuestionResposne)}"
+                android:checked="@{viewModel.item5Checked}"
+                tools:text="매우 그렇다" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+</layout>

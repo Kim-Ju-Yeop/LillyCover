@@ -1,0 +1,56 @@
+buildscript {
+    ext {
+        kotlin_version = "1.4.21"
+        kotlin_stlib_version = "1.4.10"
+        kotlinx_coroutines_android_version = "1.4.1"
+
+        lifecycle_version = "2.2.0"
+
+        rxJava_version = "2.2.20"
+        rxAndroid_version = "2.1.1"
+
+        retrofit_version = "2.9.0"
+
+        okHttp_version = "4.9.0"
+
+        hilt_version = "2.28.1-alpha"
+        hilt_viewmodel_version = "1.0.0-alpha02"
+
+        activity_version = "1.1.0"
+
+        vlc_version = "2.0.6"
+
+        navigation_version = "2.3.2"
+
+        camerakit_version = "1.0.0-beta3.10"
+        jpegkit_version = "0.1.0"
+
+        volley_version = "1.1.1"
+
+        mp_android_chart_version = "v3.1.0"
+    }
+
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

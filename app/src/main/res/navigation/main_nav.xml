@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.lillycover.hair.view.fragment.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/diagnoseFragment"
+        android:name="com.lillycover.hair.view.fragment.DiagnoseFragment"
+        android:label="DiagnoseFragment" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.lillycover.hair.view.fragment.DetailFragment"
+        android:label="DetailFragment" />
+</navigation>
